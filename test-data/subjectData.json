@@ -1,0 +1,19 @@
+{
+    "query": {
+        "information": "Information",
+        "products": "Products",
+        "query": "Query"
+    },
+    "service": {
+        "delivery": "Delivery",
+        "maintenance": "Maintenance"
+    },
+    "defaultSubject": "Default Subject",
+    "subjectList": [
+        "Information",
+        "Products",
+        "Delivery",
+        "Maintenance",
+        "Default Subject"
+    ]
+}

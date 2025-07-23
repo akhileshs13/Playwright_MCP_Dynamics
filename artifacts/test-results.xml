@@ -1,0 +1,60 @@
+<testsuites id="" name="" tests="3" failures="0" skipped="0" errors="0" time="275.785689">
+<testsuite name="suites\demoTest\regressionFlow.spec.ts" timestamp="2025-07-23T05:33:04.660Z" hostname="chromium" tests="3" failures="0" skipped="0" time="246.586" errors="0">
+<testcase name="[@Demo] Create and Validate the new Case › should be able to create a Case with configured Subject" classname="suites\demoTest\regressionFlow.spec.ts" time="85.556">
+<system-out>
+<![CDATA[2025-07-23 11:03:32 [[32minfo[39m]: [32mSuccessfully clicked on Playwright Testing POC Link[39m
+2025-07-23 11:03:32 [[32minfo[39m]: [32mNavigated to Playwright Testing POC HomePage[39m
+2025-07-23 11:03:41 [[32minfo[39m]: [32mSuccessfully clicked on Cases Menu Link[39m
+2025-07-23 11:03:49 [[32minfo[39m]: [32mSuccessfully clicked on New Case Button[39m
+2025-07-23 11:03:57 [[32minfo[39m]: [32mClicked on 'Form Fill Assist' link[39m
+2025-07-23 11:04:00 [[32minfo[39m]: [32mSubject Selected as : Information[39m
+2025-07-23 11:04:04 [[32minfo[39m]: [32mSuccessfully clicked on Customer search lookup icon[39m
+2025-07-23 11:04:12 [[32minfo[39m]: [32mTotal Records are "10"[39m
+2025-07-23 11:04:13 [[32minfo[39m]: [32mSelected record's as : Contoso Pharmaceuticals (sample)[39m
+2025-07-23 11:04:14 [[32minfo[39m]: [32mOrigin option selected: Twitter[39m
+2025-07-23 11:04:14 [[32minfo[39m]: [32mNew Case Title entered as "AutoCase_KHPEBP"[39m
+2025-07-23 11:04:23 [[32minfo[39m]: [32mSuccessfully clicked on Save Button[39m
+2025-07-23 11:04:23 [[32minfo[39m]: [32mNew Case has been created successfully[39m
+2025-07-23 11:04:23 [[32minfo[39m]: [32mAppended case title "AutoCase_KHPEBP" and case number "CAS-01130-X4N3S2" to createCase.json[39m
+2025-07-23 11:04:31 [[32minfo[39m]: [32mSuccessfully clicked on Cases Menu Link[39m
+2025-07-23 11:04:36 [[32minfo[39m]: [32mCase "AutoCase_KHPEBP" is present in the Active Cases list.[39m
+]]>
+</system-out>
+</testcase>
+<testcase name="[@Demo] Edit and Update details of the Case › should be able to update the Case and verify the details" classname="suites\demoTest\regressionFlow.spec.ts" time="73.692">
+<system-out>
+<![CDATA[2025-07-23 11:05:00 [[32minfo[39m]: [32mSuccessfully clicked on Playwright Testing POC Link[39m
+2025-07-23 11:05:00 [[32minfo[39m]: [32mNavigated to Playwright Testing POC HomePage[39m
+2025-07-23 11:05:09 [[32minfo[39m]: [32mSuccessfully clicked on Cases Menu Link[39m
+2025-07-23 11:05:09 [[32minfo[39m]: [32mPicked case title "AutoCase_KHPEBP" for subject "Query"[39m
+2025-07-23 11:05:24 [[32minfo[39m]: [32mCase 'AutoCase_KHPEBP' is visible and selected.[39m
+2025-07-23 11:05:40 [[33mwarn[39m]: [33mNo matching case found for caseTitle: 'AutoCase_KHPEBP'[39m
+2025-07-23 11:05:41 [[32minfo[39m]: [32mCase Details have been validated successfully[39m
+2025-07-23 11:05:43 [[32minfo[39m]: [32mSubject Selected as : Default Subject[39m
+2025-07-23 11:05:43 [[32minfo[39m]: [32mEntered description: "Adding the Case Description"[39m
+2025-07-23 11:05:49 [[32minfo[39m]: [32mSuccessfully clicked on Save Button[39m
+2025-07-23 11:05:50 [[32minfo[39m]: [32mValidating updated subject: expected "Default Subject", got "Default Subject"[39m
+2025-07-23 11:05:50 [[32minfo[39m]: [32mValidating updated description: expected "Adding the Case Description", got "Adding the Case Description"[39m
+]]>
+</system-out>
+</testcase>
+<testcase name="[@Demo] Select and Resolve the Case › should be able to resolve the Case with configured Subject" classname="suites\demoTest\regressionFlow.spec.ts" time="87.338">
+<system-out>
+<![CDATA[2025-07-23 11:06:12 [[32minfo[39m]: [32mSuccessfully clicked on Playwright Testing POC Link[39m
+2025-07-23 11:06:12 [[32minfo[39m]: [32mNavigated to Playwright Testing POC HomePage[39m
+2025-07-23 11:06:20 [[32minfo[39m]: [32mSuccessfully clicked on Cases Menu Link[39m
+2025-07-23 11:06:20 [[32minfo[39m]: [32mPicked case title "AutoCase_KHPEBP" for subject "Query"[39m
+2025-07-23 11:06:36 [[32minfo[39m]: [32mCase 'AutoCase_KHPEBP' is visible and selected.[39m
+2025-07-23 11:06:52 [[33mwarn[39m]: [33mNo matching case found for caseTitle: 'AutoCase_KHPEBP'[39m
+2025-07-23 11:06:52 [[32minfo[39m]: [32mCase Details have been validated successfully[39m
+2025-07-23 11:06:56 [[32minfo[39m]: [32mSuccessfully clicked on Resolve Case Button[39m
+2025-07-23 11:07:00 [[32minfo[39m]: [32mSuccessfully clicked on Resolve Button in PopUp[39m
+2025-07-23 11:07:04 [[32minfo[39m]: [32mSuccessfully Resolved the Case[39m
+2025-07-23 11:07:04 [[32minfo[39m]: [32mDeleted case "AutoCase_KHPEBP" from createCase.json[39m
+2025-07-23 11:07:13 [[32minfo[39m]: [32mSuccessfully clicked on Cases Menu Link[39m
+2025-07-23 11:07:17 [[32minfo[39m]: [32mCase "AutoCase_KHPEBP" is NOT present in the Active Cases list.[39m
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

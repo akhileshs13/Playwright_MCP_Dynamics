@@ -1,0 +1,15 @@
+{
+  "requestor": "Requestor",
+  "customer": "Customer",
+  "vehicle": "Vehicle",
+  "vehicleOrder": "Vehicle Order",
+  "account": "Account",
+  "notificationText": "You have 4 notifications. Select to view.",
+  "customerErrorText": "Customer: Required fields must be filled in.",
+  "vehicleOrderErrorText": "Vehicle Order: Required fields must be filled in.",
+  "resolvedCaseSuccessMsg": "Read-only This record’s status: Resolved",
+  "description": "Adding the Case Description",
+  "resolutionText": "Document Shared"
+
+
+}

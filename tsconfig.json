@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "lib": ["ES2020", "DOM"],
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "outDir": "dist",
+    "rootDir": ".",
+    "strict": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node", "playwright"]
+  },
+  "include": [
+    "utils/**/*",
+    "globals/**/*",
+    "fixtures/**/*",
+    "page-objects/**/*",
+    "suites/**/*",
+    "scripts/**/*",
+    "playwright.config.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "allure-results",
+    "artifacts",
+    "playwright-report",
+    "results"
+  ]
+}
