@@ -2,13 +2,14 @@ import type { PlaywrightTestConfig } from "@playwright/test";
 import dotenv from 'dotenv';
 import path from 'path';
 
-// Default to .env if ENV_FILE is not provided
+// Default to .env if ENV_FILE is not provided, use env.test directory
 const envFile = process.env.ENV_FILE || '.env'
-dotenv.config({ path: path.resolve(__dirname, envFile) });
+dotenv.config({ path: path.resolve(__dirname, `env.test/${envFile}`) });
 
 const config: PlaywrightTestConfig = {
   testDir: './',
-  testMatch: "**/*.ts",
+  testMatch: ["**/*.spec.ts", "**/test*.ts"],
+  testIgnore: ["**/setup/**", "**/MCP/**", "**/globals/**", "**/utils/**", "**/page-objects/**", "**/pages/**", "**/regressionFlow.spec.ts", "**/fixtures/**"],
   timeout: 600000,
   expect: {
     timeout: 10000,
@@ -24,7 +25,7 @@ const config: PlaywrightTestConfig = {
     screenshot: 'only-on-failure', // Take screenshot only on failure
     trace: 'retain-on-failure', // Retain trace files on failure
     baseURL: process.env.DYN365_ORGURL, // Base URL for the tests
-    storageState: './storage-state/storageState.json', // Path to the storage state file
+    storageState: './storage-state/storageState.json', // Path to the root storage state file
     ignoreHTTPSErrors: true, // Ignore HTTPS errors
     video: 'retain-on-failure', // Retain video files on failure
 
@@ -35,7 +36,7 @@ const config: PlaywrightTestConfig = {
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 1 : 1,
+  retries: process.env.CI ? 1 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 3 : 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */

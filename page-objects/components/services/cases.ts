@@ -12,7 +12,6 @@ export class CasesPage {
     readonly helper: Helper;
     readonly retryAction: typeof retryAction;
     readonly casesMenu: Locator;
-    readonly caseDropdown: Locator;
     readonly activeCasesOption: Locator;
     readonly newCaseButton: Locator;
     readonly inputSubject: Locator;
@@ -22,11 +21,7 @@ export class CasesPage {
     readonly inputCaseTitle: Locator;
     readonly saveAndCloseButton: Locator;
     readonly saveButton: Locator;
-    readonly caseSearchFilter: Locator;
-    readonly requestorValueLocator: Locator;
     readonly customerValueLocator: Locator;
-    readonly vehicleOrderValueLocator: Locator;
-    readonly goButton: Locator;
     readonly rowLocator: Locator;
     readonly caseHeaderTitle: Locator;
     readonly subjectValue: Locator;
@@ -34,15 +29,12 @@ export class CasesPage {
     readonly popUpOkButton: Locator;
     readonly notificationMsg: Locator;
     readonly customerErrorMsg: Locator;
-    readonly requestorErrorMsg: Locator;
     readonly vehicleOrderErrorMsg: Locator;
     readonly resolveCaseButton: Locator;
     readonly resolutionInput: Locator;
     readonly resolveButton: Locator;
     readonly resolvedSuccessMsg: Locator;
     readonly resolutionOkButton: Locator;
-    readonly myActiveCasesOption: Locator;
-    readonly createdOnColumnHeader: Locator;
     readonly showFormFillAssistLink: Locator;
     readonly chevronRightIcon: Locator;
     readonly subjectOptionLocator: (subjectText: string) => Locator;
@@ -56,7 +48,6 @@ export class CasesPage {
         this.helper = new Helper(page);
         this.retryAction = retryAction;
         this.casesMenu = page.locator('li[role="treeitem"][aria-label="Cases"]');
-        this.caseDropdown = page.locator('button[aria-label="My Active Cases"] i[data-icon-name="ChevronDown"]');
         this.activeCasesOption = page.getByRole('menuitemradio', { name: 'Active Cases', exact: true });
         this.newCaseButton = page.locator('button[aria-label="New Case"]');
         this.inputSubject = page.locator('input[aria-label="Look for subject"]');
@@ -67,26 +58,19 @@ export class CasesPage {
         this.inputCaseTitle = page.locator('input[aria-label="Case Title"]');
         this.saveAndCloseButton = page.locator('button[aria-label="Save & Close"]');
         this.saveButton = page.locator('button[aria-label="Save (CTRL+S)"]');
-        this.caseSearchFilter = page.locator('input[aria-label="Case Filter by keyword"]');
-        this.requestorValueLocator = page.locator('div[data-id*="zen_requestorid"][title]');
         this.customerValueLocator = page.locator('div[data-id*="customerid"][title]');
-        this.vehicleOrderValueLocator = page.locator('div[data-id*="zen_vehicleorderid"][title]');
-        this.goButton = page.locator('button[aria-label="GO"]');
         this.caseHeaderTitle = page.locator('h1[data-id="header_title"]');
         this.subjectValue = page.locator('input[aria-label="Look for subject"]');
         this.popUpSubjectConfMissing = page.locator('h1[aria-label="Subject Configuration Missing"]');
         this.popUpOkButton = page.locator('button[data-id="okButton"]');
         this.notificationMsg = page.locator('span[data-id="notificationWrapper_message"]');
         this.customerErrorMsg = page.locator('span[data-id="customerid-error-message"]');
-        this.requestorErrorMsg = page.locator('span[data-id="zen_requestorid-error-message"]');
         this.vehicleOrderErrorMsg = page.locator('span[data-id="zen_vehicleorderid-error-message"]');
         this.resolveCaseButton = page.locator('button[aria-label="Resolve Case"]');
         this.resolutionInput = page.locator('input[aria-label="Resolution"]');
         this.resolveButton = page.locator('button[data-id="ok_id"]');
         this.resolvedSuccessMsg = page.locator('span[data-id="warningNotification"]');
         this.resolutionOkButton = page.locator('button[data-id="errorOkButton"]');
-        this.myActiveCasesOption = page.locator('button[title="My Active Cases"]');
-        this.createdOnColumnHeader = page.locator('[data-testid="createdon"]');
         this.showFormFillAssistLink = page.locator('button:has-text("Hide form fill assist")');
         this.chevronRightIcon = page.locator('i[data-icon-name="ChevronRight"]');
         this.subjectOptionLocator = (subjectText: string) => page.locator(`div[aria-label="${subjectText}"] > div`);
@@ -94,6 +78,70 @@ export class CasesPage {
         this.descriptionInput = page.locator('textarea[aria-label="Description"]');
         this.buttonMoreCommandsToCase = page.locator('button[aria-label="More commands for Case"] > span');
         this.caseNumberInput = page.locator('input[aria-label="ID"]');
+    }
+
+    async closePopupsAndSuggestions() {
+        // Close various types of popups and suggestions including AI form fill assistant
+        const closeSelectors = [
+            '[aria-label="Dismiss Copilot suggestion"]',
+            '[aria-label="Close"]',
+            'button[title="Close"]',
+            '[data-id="dialogCloseIconButton"]',
+            '[aria-label="Dismiss"]',
+            'button:has-text("×")',
+            'button:has-text("Close")',
+            'button:has-text("Got it")',
+            'button:has-text("No thanks")',
+            'button:has-text("Skip")',
+            'button:has-text("Cancel")',
+            '[data-id="cancelButton"]',
+            'body' // For pressing Escape
+        ];
+        
+        // Check for new tabs/windows first
+        const context = this.page.context();
+        const pages = context.pages();
+        
+        if (pages.length > 1) {
+            for (let i = 1; i < pages.length; i++) {
+                try {
+                    await pages[i].close();
+                } catch (e) {
+                    // Ignore errors
+                }
+            }
+            await this.page.waitForTimeout(500);
+        }
+        
+        for (const selector of closeSelectors) {
+            try {
+                if (selector === 'body') {
+                    // Press Escape key to close any open dialogs/popovers
+                    await this.page.keyboard.press('Escape');
+                    await this.page.waitForTimeout(200);
+                    continue;
+                }
+                
+                const elements = await this.page.$$(selector);
+                for (const element of elements) {
+                    if (await element.isVisible()) {
+                        const text = await element.textContent();
+                        const buttonText = text?.trim() || '';
+                        
+                        // Skip "Learn more" and "Save & Close" buttons
+                        if (buttonText.includes('Learn more') || buttonText.includes('Learn More') ||
+                            buttonText.includes('Save & Close') || buttonText.includes('Save &')) {
+                            continue;
+                        }
+                        
+                        await element.click();
+                        await this.page.waitForTimeout(300);
+                    }
+                }
+            } catch (e) {
+                // Ignore errors and continue
+            }
+        }
     }
 
     async clickCasesLink() {
@@ -117,6 +165,9 @@ export class CasesPage {
 
             await this.helper.waitForSpecificAsyncTimeout();
 
+            // Close any AI popups or form fill assistant popups that might appear
+            await this.closePopupsAndSuggestions();
+
             const isAssistLinkVisible = await assistLink.isVisible({ timeout: 5000 }).catch(() => false);
 
             if (isAssistLinkVisible) {
@@ -125,6 +176,9 @@ export class CasesPage {
             } else {
                 logger.info("'Form Fill Assist' link not visible — skipping.");
             }
+
+            // Close any additional popups that might have appeared
+            await this.closePopupsAndSuggestions();
         } catch (error) {
             logger.error(`Error in clickNewCaseButton: ${(error as Error).message}`);
             throw error;
@@ -150,24 +204,104 @@ export class CasesPage {
     }
 
     async selectSubject(subjectText: string): Promise<void> {
-        // Wait for subject input to be visible and interactable
-        await this.inputSubject.first().waitFor({ state: 'visible', timeout: 7000 });
-        await this.inputSubject.first().focus();
-        await this.inputSubject.first().clear();
-        await this.inputSubject.first().click({ force: true });
+        // Close any AI suggestions or popups first
+        await this.closePopupsAndSuggestions();
+        
+        let subjectSelected = false;
+        
+        // Strategy 1: Try subject search button approach first
+        const subjectSearchSelectors = [
+            '[aria-label="Search records for Subject, Lookup field"]',
+            '[aria-label="Search records for Subject, Lookup"]',
+            '[data-id*="subject"] button[aria-label*="Search"]',
+            'button[data-id*="subject"][title*="Search"]',
+            'button[aria-label*="Search Subject"]'
+        ];
+        
+        for (const searchSelector of subjectSearchSelectors) {
+            try {
+                const searchButton = this.page.locator(searchSelector);
+                if (await searchButton.isVisible({ timeout: 3000 }).catch(() => false)) {
+                    await searchButton.click({ force: true });
+                    await this.page.waitForTimeout(2000);
+                    
+                    // Check if lookup dialog opened
+                    const dialogVisible = await this.page.locator('[role="dialog"], [aria-label*="Lookup"]').isVisible().catch(() => false);
+                    if (dialogVisible) {
+                        // Look for subject records in the dialog
+                        const subjectRecordSelectors = [
+                            '[role="dialog"] [role="row"] [role="gridcell"]:first-child',
+                            '[role="dialog"] tr:first-child td:first-child',
+                            '[role="dialog"] .ms-DetailsList-cell:first-child'
+                        ];
+                        
+                        for (const recordSelector of subjectRecordSelectors) {
+                            try {
+                                const subjectRecord = this.page.locator(recordSelector);
+                                if (await subjectRecord.isVisible({ timeout: 2000 }).catch(() => false)) {
+                                    await subjectRecord.click();
+                                    await this.page.waitForTimeout(1000);
+                                    
+                                    // Look for Done button
+                                    const doneButton = this.page.locator('button:has-text("Done"), button:has-text("Select")');
+                                    if (await doneButton.isVisible({ timeout: 2000 }).catch(() => false)) {
+                                        await doneButton.click();
+                                        await this.page.waitForTimeout(1000);
+                                        subjectSelected = true;
+                                        break;
+                                    }
+                                }
+                            } catch (e) {
+                                // Continue to next selector
+                            }
+                        }
+                        
+                        if (subjectSelected) break;
+                    }
+                }
+            } catch (e) {
+                // Continue to next selector
+            }
+        }
+        
+        // Strategy 2: Try original dropdown approach if search button didn't work
+        if (!subjectSelected) {
+            try {
+                // Wait for subject input to be visible and interactable
+                await this.inputSubject.first().waitFor({ state: 'visible', timeout: 7000 });
+                await this.inputSubject.first().focus();
+                await this.inputSubject.first().clear();
+                await this.inputSubject.first().click({ force: true });
 
-        // Wait for chevron icon to be visible and stable before clicking
-        await this.chevronRightIcon.first().waitFor({ state: 'visible', timeout: 5000 });
-        await this.chevronRightIcon.first().click();
+                // Try to click the chevron icon with reduced timeout
+                try {
+                    await this.chevronRightIcon.first().waitFor({ state: 'visible', timeout: 3000 });
+                    await this.chevronRightIcon.first().click();
+                } catch (e) {
+                    // If chevron not visible, try clicking the input field again to trigger dropdown
+                    await this.inputSubject.first().click({ force: true });
+                    await this.page.keyboard.press('ArrowDown');
+                }
 
-        // Wait for the subject option to appear and be stable
-        const optionLocator = this.subjectOptionLocator(subjectText);
+                // Wait for the subject option to appear and be stable
+                const optionLocator = this.subjectOptionLocator(subjectText);
 
-        // Use expect to ensure the option is visible before clicking
-        await expect(optionLocator.first()).toBeVisible({ timeout: 10000 });
-        await optionLocator.first().click();
+                // Use expect to ensure the option is visible before clicking
+                await expect(optionLocator.first()).toBeVisible({ timeout: 10000 });
+                await optionLocator.first().click();
+                
+                subjectSelected = true;
+            } catch (e) {
+                logger.error(`Failed to select subject using dropdown approach: ${(e as Error).message}`);
+                throw e;
+            }
+        }
 
-        logger.info(`Subject Selected as : ${subjectText}`);
+        if (subjectSelected) {
+            logger.info(`Subject Selected as : ${subjectText}`);
+        } else {
+            throw new Error(`Failed to select subject: ${subjectText}`);
+        }
     }
 
     async clickLookupSearchIcon(fieldName: string) {
@@ -369,13 +503,106 @@ export class CasesPage {
     }
 
     async searchCaseInFilter(caseTitle: string) {
-        await retryAction(async () => {
-            await this.caseSearchFilter.waitFor({ state: 'visible', timeout: 8000 });
-        }, 2, 2000);
-        await this.caseSearchFilter.clear();
-        await this.caseSearchFilter.fill(caseTitle);
-        await this.caseSearchFilter.press('Enter');
+        // Close any popups that might be blocking the interface
+        await this.closePopupsAndSuggestions();
+        
+        // Wait for the page to be fully loaded
+        await this.helper.waitForSpecificAsyncTimeout();
+        
+        // Try multiple search filter locators based on working MCP patterns
+        const searchFilterSelectors = [
+            // Modern Dynamics 365 search patterns
+            '[aria-label*="Filter by keyword"]',
+            '[placeholder*="Filter by keyword"]',
+            '[aria-label*="Search this view"]',
+            '[placeholder*="Search this view"]',
+            'input[aria-label*="Search"]',
+            'input[placeholder*="Search"]',
+            'input[aria-label*="Filter"]',
+            'input[placeholder*="Filter"]',
+            
+            // Classic patterns
+            '[data-id*="search"] input',
+            '[data-id*="filter"] input',
+            '.search-input',
+            '.filter-input',
+            'input[type="search"]',
+            'input[role="searchbox"]',
+            
+            // Grid search patterns
+            '[role="grid"] input[type="text"]',
+            '.ms-DetailsList input[type="text"]',
+            
+            // Specific Dynamics selectors
+            '[data-id="grid-cell-search"]',
+            '[data-automationid="searchBox"]',
+            '.data-grid-search input',
+            
+            // Original selector as fallback
+            'input[aria-label="Case Filter by keyword"]'
+        ];
+        
+        let searchField = null;
+        let selectorUsed = '';
+        
+        // Find the search field using multiple strategies
+        for (const selector of searchFilterSelectors) {
+            try {
+                const field = this.page.locator(selector);
+                if (await field.isVisible({ timeout: 3000 }).catch(() => false)) {
+                    searchField = field;
+                    selectorUsed = selector;
+                    logger.info(`Found search field using selector: ${selector}`);
+                    break;
+                }
+            } catch (e) {
+                // Continue to next selector
+            }
+        }
+        
+        if (!searchField) {
+            // Log all visible input elements for debugging
+            const allInputs = await this.page.$$('input');
+            logger.info(`Found ${allInputs.length} input elements on the page`);
+            
+            for (let i = 0; i < Math.min(allInputs.length, 5); i++) {
+                try {
+                    const input = allInputs[i];
+                    const ariaLabel = await input.getAttribute('aria-label');
+                    const placeholder = await input.getAttribute('placeholder');
+                    const dataId = await input.getAttribute('data-id');
+                    const type = await input.getAttribute('type');
+                    const visible = await input.isVisible();
+                    logger.info(`Input ${i}: aria-label="${ariaLabel}", placeholder="${placeholder}", data-id="${dataId}", type="${type}", visible=${visible}`);
+                } catch (e) {
+                    // Skip this input
+                }
+            }
+            
+            throw new Error('Could not find case search filter field with any of the attempted selectors');
+        }
+        
+        // Clear and fill the search field
+        try {
+            await searchField.click({ force: true });
+            await this.page.keyboard.press('Control+a'); // Select all text
+            await this.page.keyboard.press('Delete'); // Delete selected text
+            await searchField.fill(caseTitle);
+            await searchField.press('Enter');
+        } catch (e) {
+            // Fallback approach
+            try {
+                await searchField.clear();
+                await searchField.fill(caseTitle);
+                await searchField.press('Enter');
+            } catch (fallbackError) {
+                logger.error(`Failed to search with both approaches using selector ${selectorUsed}: ${(fallbackError as Error).message}`);
+                throw fallbackError;
+            }
+        }
+        
         await this.helper.waitForAsyncTimeout();
+        logger.info(`Searched for case: ${caseTitle}`);
     }
 
     async verifyAndReadCaseDetails(caseTitle: string) {

@@ -1,58 +1,367 @@
-<testsuites id="" name="" tests="3" failures="0" skipped="0" errors="0" time="275.785689">
-<testsuite name="suites\demoTest\regressionFlow.spec.ts" timestamp="2025-07-23T05:33:04.660Z" hostname="chromium" tests="3" failures="0" skipped="0" time="246.586" errors="0">
-<testcase name="[@Demo] Create and Validate the new Case › should be able to create a Case with configured Subject" classname="suites\demoTest\regressionFlow.spec.ts" time="85.556">
+<testsuites id="" name="" tests="3" failures="0" skipped="0" errors="0" time="267.87360099999995">
+<testsuite name="spec\cases.spec.ts" timestamp="2025-08-01T12:46:53.436Z" hostname="chromium" tests="3" failures="0" skipped="0" time="250.369" errors="0">
+<testcase name="Case Creation › should create a new case and validate" classname="spec\cases.spec.ts" time="107.297">
 <system-out>
-<![CDATA[2025-07-23 11:03:32 [[32minfo[39m]: [32mSuccessfully clicked on Playwright Testing POC Link[39m
-2025-07-23 11:03:32 [[32minfo[39m]: [32mNavigated to Playwright Testing POC HomePage[39m
-2025-07-23 11:03:41 [[32minfo[39m]: [32mSuccessfully clicked on Cases Menu Link[39m
-2025-07-23 11:03:49 [[32minfo[39m]: [32mSuccessfully clicked on New Case Button[39m
-2025-07-23 11:03:57 [[32minfo[39m]: [32mClicked on 'Form Fill Assist' link[39m
-2025-07-23 11:04:00 [[32minfo[39m]: [32mSubject Selected as : Information[39m
-2025-07-23 11:04:04 [[32minfo[39m]: [32mSuccessfully clicked on Customer search lookup icon[39m
-2025-07-23 11:04:12 [[32minfo[39m]: [32mTotal Records are "10"[39m
-2025-07-23 11:04:13 [[32minfo[39m]: [32mSelected record's as : Contoso Pharmaceuticals (sample)[39m
-2025-07-23 11:04:14 [[32minfo[39m]: [32mOrigin option selected: Twitter[39m
-2025-07-23 11:04:14 [[32minfo[39m]: [32mNew Case Title entered as "AutoCase_KHPEBP"[39m
-2025-07-23 11:04:23 [[32minfo[39m]: [32mSuccessfully clicked on Save Button[39m
-2025-07-23 11:04:23 [[32minfo[39m]: [32mNew Case has been created successfully[39m
-2025-07-23 11:04:23 [[32minfo[39m]: [32mAppended case title "AutoCase_KHPEBP" and case number "CAS-01130-X4N3S2" to createCase.json[39m
-2025-07-23 11:04:31 [[32minfo[39m]: [32mSuccessfully clicked on Cases Menu Link[39m
-2025-07-23 11:04:36 [[32minfo[39m]: [32mCase "AutoCase_KHPEBP" is present in the Active Cases list.[39m
+<![CDATA[🔍 Environment check: DY_USERNAME=<<enter_your_username>>
+🔍 Environment check: DY_URL=https://org6d780a22.crm.dynamics.com/main.aspx?appid=4c0648f5-f766-f011-bec2-000d3a36aa25
+Navigating directly to case creation form...
+Current URL after login: https://org6d780a22.crm.dynamics.com/main.aspx?appid=4c0648f5-f766-f011-bec2-000d3a36aa25&pagetype=dashboard&id=65e050d3-8b71-4b53-acb5-bb9af83bf384&type=system&_canOverride=true
+Trying direct navigation to: https://org6d780a22.crm.dynamics.com/main.aspx?etn=incident&pagetype=entityrecord
+Direct URL result - Case Title: false, Subject: false
+Direct URL did not load case form, falling back to UI navigation...
+🔍 Debugging: Looking for navigation elements...
+🔍 Available navigation elements: []
+🎯 Trying direct URL navigation to Cases...
+Navigating directly to Cases: https://org6d780a22.crm.dynamics.com/main.aspx?etn=incident&pagetype=entitylist
+🔍 Checking if Service section needs to be expanded...
+🎯 Attempting to click Cases menu...
+Found and clicking Cases navigation: text="Cases"
+Found 1 elements with selector: button[aria-label*="Close"]
+✅ Successfully navigated to Cases page
+Found 1 elements with selector: button[aria-label*="Close"]
+🔍 Looking for New Case button...
+Found 28 buttons on page
+Button 0: text="" aria-label="App launcher"
+Button 1: text="" aria-label="Search"
+Button 2: text="" aria-label="Assistant"
+Button 3: text="" aria-label="Create New Record. New"
+Button 4: text="" aria-label="Advanced find"
+Button 5: text="" aria-label="Settings"
+Button 6: text="" aria-label="Help"
+Button 7: text="" aria-label="Copilot"
+Button 8: text="Account manager for Akhilesh ShuklaAS" aria-label="Account manager for Akhilesh Shukla"
+Button 9: text="Sign out" aria-label="Sign out of this account"
+Clicking New Case button: button:has-text("New")
+Found 1 elements with selector: [aria-label="Close"]
+Found 13 elements with selector: button[aria-label*="Close"]
+Found 1 elements with selector: [data-testid*="close"]
+Found 1 elements with selector: .fui-TeachingPopoverHeader button
+Clicking close element: "" with selector: .fui-TeachingPopoverHeader button
+Successfully navigated to case form, found: [aria-label="Case Title"]
+Checking for form fill assistant...
+Found 1 elements with selector: [aria-label="Close"]
+Found 1 elements with selector: button:has-text("Close")
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 14 elements with selector: button[aria-label*="Close"]
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 1 elements with selector: [data-testid*="close"]
+🎯 Starting Subject selection - click and select only...
+🔍 Trying Subject search button approach...
+🎯 Trying to select General Enquiry, Product, or Query from dropdown...
+Found subject input field: [data-id*="subject"] input
+Found 1 elements with selector: [aria-label="Close"]
+Found 1 elements with selector: button:has-text("Close")
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 14 elements with selector: button[aria-label*="Close"]
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 1 elements with selector: [data-testid*="close"]
+Trying single click to open subject dropdown...
+Trying dropdown selector: [data-list-index]
+Found 3 subject options with single click using: [data-list-index]
+data-list-index="0": "Default Subject"
+data-list-index="1": "Query"
+data-list-index="2": "Service"
+✅ Selecting subject at data-list-index="1": "Query"
+✅ Selected subject by data-list-index: Query
+✅ Subject selection completed successfully
+Found 1 elements with selector: [aria-label="Close"]
+Found 1 elements with selector: button:has-text("Close")
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 14 elements with selector: button[aria-label*="Close"]
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 1 elements with selector: [data-testid*="close"]
+🔍 Looking for customer search icon with enhanced detection...
+✅ Found customer search icon: [aria-label="Search records for Customer, Lookup field"]
+Found 1 elements with selector: [aria-label="Close"]
+Found 1 elements with selector: button:has-text("Close")
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 14 elements with selector: button[aria-label*="Close"]
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 1 elements with selector: [data-testid*="close"]
+Trying Standard Click on customer search icon...
+✅ Lookup dialog detected with selector: [aria-label*="Lookup"]
+✅ Successfully opened customer lookup with Standard Click
+Looking for Advanced link...
+Found Advanced link: a:has-text("Advanced")
+Successfully clicked Advanced link
+Looking for customer record radio buttons in advanced dialog...
+Found 0 radio buttons with selector: [role="dialog"] input[type="radio"]
+Found 0 radio buttons with selector: [role="dialog"] [role="radio"]
+Found 0 radio buttons with selector: [role="dialog"] input[name*="select"]
+Found 0 radio buttons with selector: [role="dialog"] td input[type="radio"]
+Found 0 radio buttons with selector: [role="dialog"] tr input[type="radio"]
+Found 0 radio buttons with selector: [role="dialog"] [data-id*="radio"]
+Found 0 radio buttons with selector: [role="dialog"] .ms-DetailsList input[type="radio"]
+Found 0 radio buttons with selector: [role="dialog"] .ms-List-cell input[type="radio"]
+Found 0 radio buttons with selector: [role="dialog"] .ms-DetailsRow input[type="radio"]
+Found 0 radio buttons with selector: [role="dialog"] [class*="radio"]
+Found 1 radio buttons with selector: [role="dialog"] [aria-label*="Select"]
+Clicking random radio button 1 of 1 with selector: [role="dialog"] [aria-label*="Select"]
+Radio button clicked but not checked, trying next selector...
+Found 1 radio buttons with selector: [role="dialog"] input[class*="ms-"]
+Clicking random radio button 1 of 1 with selector: [role="dialog"] input[class*="ms-"]
+Radio button clicked but not checked, trying next selector...
+Found 0 radio buttons with selector: input[type="radio"]:visible
+Found 0 radio buttons with selector: [role="radio"]:visible
+Found 0 radio buttons with selector: [role="dialog"] .ms-DetailsRow-cell input
+Found 0 radio buttons with selector: [role="dialog"] .ms-List-itemCell input
+Found 0 radio buttons with selector: [role="dialog"] tbody input[type="radio"]
+Found 0 radio buttons with selector: .ms-Dialog input[type="radio"]
+Found 0 radio buttons with selector: [data-automation-id*="radio"]
+Found 0 radio buttons with selector: [role="dialog"] [aria-checked]
+No radio button found or selected, trying direct record selection...
+Trying customer record selector: [role="dialog"] [role="row"] [role="gridcell"]:first-child
+Found 10 elements with selector: [role="dialog"] [role="row"] [role="gridcell"]:first-child
+Attempting to click random customer record 7 of 10
+Successfully selected random customer record 7 with selector: [role="dialog"] [role="row"] [role="gridcell"]:first-child
+Attempting to click Done button after record selection...
+Found Done/Add/Select button: button:has-text("Done")
+Successfully completed customer selection with Done/Add/Select button
+Checking for form fill assistant...
+Found 1 elements with selector: [aria-label="Close"]
+Found 1 elements with selector: button:has-text("Close")
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 15 elements with selector: button[aria-label*="Close"]
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 1 elements with selector: [data-testid*="close"]
+🎯 Selecting Origin with enhanced dropdown wait...
+Found origin field: [aria-label="Origin"]
+Found 1 elements with selector: [aria-label="Close"]
+Found 1 elements with selector: button:has-text("Close")
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 15 elements with selector: button[aria-label*="Close"]
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 1 elements with selector: [data-testid*="close"]
+Clicking origin field to open dropdown...
+Waiting for origin dropdown to display...
+Found 7 origin options with selector: [role="listbox"] [role="option"]
+Checking origin option: "--Select--"
+Checking origin option: "Phone"
+Checking origin option: "Email"
+Checking origin option: "Web"
+Checking origin option: "Facebook"
+Checking origin option: "Twitter"
+Checking origin option: "IoT"
+✅ Selected origin option: Facebook
+✅ Origin selection completed successfully
+Entered case title: AutoCase_219457
+Entered case description
+🔍 Looking for Save button...
+Found 1 elements with selector: [aria-label="Close"]
+Found 1 elements with selector: button:has-text("Close")
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 16 elements with selector: button[aria-label*="Close"]
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 1 elements with selector: [data-testid*="close"]
+📋 Checking required fields before save:
+  ✅ [aria-label="Case Title"]: "AutoCase_219457"
+  🔍 Found Subject using alternative selector: [data-id*="subject"] input
+  ✅ [aria-label*="Subject"]: "Query"
+  ✅ [aria-label="Origin"]: "Facebook"
+Found Save button via text search: "Save"
+✅ Save button clicked successfully
+
+📋 Performing search filter validation...
+
+🔍 Validating case "AutoCase_219457" through enhanced search methods...
+Found 1 elements with selector: [aria-label="Close"]
+Found 1 elements with selector: button:has-text("Close")
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 19 elements with selector: button[aria-label*="Close"]
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 1 elements with selector: [data-testid*="close"]
+🔍 Looking for search/filter inputs...
+✅ Found search input: input[placeholder*="Search"]
+Found 1 elements with selector: [aria-label="Close"]
+Found 1 elements with selector: button:has-text("Close")
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 19 elements with selector: button[aria-label*="Close"]
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 1 elements with selector: [data-testid*="close"]
+✅ Entered case title "AutoCase_219457" in search filter
+✅ Search triggered successfully
+🔍 Searching for case title "AutoCase_219457" in search results...
+✅ Found case "AutoCase_219457" in search results with: text="AutoCase_219457"
+✅ Case "AutoCase_219457" search filter validation successful! Test completed.
 ]]>
 </system-out>
 </testcase>
-<testcase name="[@Demo] Edit and Update details of the Case › should be able to update the Case and verify the details" classname="suites\demoTest\regressionFlow.spec.ts" time="73.692">
+<testcase name="Case Creation › should be able to resolve the Case with configured Subject" classname="spec\cases.spec.ts" time="66.271">
 <system-out>
-<![CDATA[2025-07-23 11:05:00 [[32minfo[39m]: [32mSuccessfully clicked on Playwright Testing POC Link[39m
-2025-07-23 11:05:00 [[32minfo[39m]: [32mNavigated to Playwright Testing POC HomePage[39m
-2025-07-23 11:05:09 [[32minfo[39m]: [32mSuccessfully clicked on Cases Menu Link[39m
-2025-07-23 11:05:09 [[32minfo[39m]: [32mPicked case title "AutoCase_KHPEBP" for subject "Query"[39m
-2025-07-23 11:05:24 [[32minfo[39m]: [32mCase 'AutoCase_KHPEBP' is visible and selected.[39m
-2025-07-23 11:05:40 [[33mwarn[39m]: [33mNo matching case found for caseTitle: 'AutoCase_KHPEBP'[39m
-2025-07-23 11:05:41 [[32minfo[39m]: [32mCase Details have been validated successfully[39m
-2025-07-23 11:05:43 [[32minfo[39m]: [32mSubject Selected as : Default Subject[39m
-2025-07-23 11:05:43 [[32minfo[39m]: [32mEntered description: "Adding the Case Description"[39m
-2025-07-23 11:05:49 [[32minfo[39m]: [32mSuccessfully clicked on Save Button[39m
-2025-07-23 11:05:50 [[32minfo[39m]: [32mValidating updated subject: expected "Default Subject", got "Default Subject"[39m
-2025-07-23 11:05:50 [[32minfo[39m]: [32mValidating updated description: expected "Adding the Case Description", got "Adding the Case Description"[39m
+<![CDATA[📋 Navigating to Cases...
+🔍 Debugging: Looking for navigation elements...
+🔍 Available navigation elements: []
+🎯 Trying direct URL navigation to Cases...
+Navigating directly to Cases: https://org6d780a22.crm.dynamics.com/main.aspx?etn=incident&pagetype=entitylist
+🔍 Checking if Service section needs to be expanded...
+🎯 Attempting to click Cases menu...
+⚠️ Cases navigation completed (may already be on Cases page or navigation failed)
+🔍 Looking for existing cases in My Active Cases table...
+🔍 Selecting a case via checkbox from My Active Cases table...
+🔍 Looking for cases in My Active Cases and selecting via checkbox...
+Checkbox selector [role="grid"] [role="row"] input[type="checkbox"] failed: page.waitForSelector: Timeout 5000ms exceeded.
+Call log:
+[2m  - waiting for locator('[role="grid"] [role="row"] input[type="checkbox"]') to be visible[22m
+
+Found 21 checkboxes with selector: [role="gridcell"] input[type="checkbox"]
+Selecting case via checkbox: "AutoCase_219457"
+✅ Selected case checkbox for: AutoCase_219457
+📂 Selected case: AutoCase_219457
+📂 Opening selected case...
+📂 Opening selected case: AutoCase_219457
+Found case link with selector: a:has-text("AutoCase_219457")
+✅ Verifying case details are loaded...
+✅ Verifying case details page is loaded...
+✅ Case details loaded - found: [aria-label="Case Title"]
+🔧 Resolving the case...
+🔧 Starting case resolution process...
+Found 1 elements with selector: [aria-label="Close"]
+Found 1 elements with selector: button:has-text("Close")
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 13 elements with selector: button[aria-label*="Close"]
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 1 elements with selector: [data-testid*="close"]
+Found Resolve Case button: button:has-text("Resolve Case")
+⏳ Waiting for resolution dialog to appear...
+✅ Resolution dialog appeared
+🔍 Looking for resolution fields...
+Found resolution text field: [role="dialog"] input[aria-label*="Resolution"]
+📝 Resolution text entry attempt 1/3
+📊 Verification - Expected: "fixed the issue", Entered: "fixed the issue"
+✅ Successfully entered resolution text: "fixed the issue" on attempt 1
+Clicking Resolve button in dialog: [role="dialog"] button:has-text("Resolve")
+✅ Validating resolution success...
+✅ Validating resolution success message...
+🔍 Looking for "Resolved" status message...
+✅ Found "Resolved" status message: div:has-text("Resolved")
+✅ Case resolution test completed successfully!
 ]]>
 </system-out>
 </testcase>
-<testcase name="[@Demo] Select and Resolve the Case › should be able to resolve the Case with configured Subject" classname="suites\demoTest\regressionFlow.spec.ts" time="87.338">
+<testcase name="Case Creation › should be able to edit a Case with new description and origin" classname="spec\cases.spec.ts" time="76.801">
 <system-out>
-<![CDATA[2025-07-23 11:06:12 [[32minfo[39m]: [32mSuccessfully clicked on Playwright Testing POC Link[39m
-2025-07-23 11:06:12 [[32minfo[39m]: [32mNavigated to Playwright Testing POC HomePage[39m
-2025-07-23 11:06:20 [[32minfo[39m]: [32mSuccessfully clicked on Cases Menu Link[39m
-2025-07-23 11:06:20 [[32minfo[39m]: [32mPicked case title "AutoCase_KHPEBP" for subject "Query"[39m
-2025-07-23 11:06:36 [[32minfo[39m]: [32mCase 'AutoCase_KHPEBP' is visible and selected.[39m
-2025-07-23 11:06:52 [[33mwarn[39m]: [33mNo matching case found for caseTitle: 'AutoCase_KHPEBP'[39m
-2025-07-23 11:06:52 [[32minfo[39m]: [32mCase Details have been validated successfully[39m
-2025-07-23 11:06:56 [[32minfo[39m]: [32mSuccessfully clicked on Resolve Case Button[39m
-2025-07-23 11:07:00 [[32minfo[39m]: [32mSuccessfully clicked on Resolve Button in PopUp[39m
-2025-07-23 11:07:04 [[32minfo[39m]: [32mSuccessfully Resolved the Case[39m
-2025-07-23 11:07:04 [[32minfo[39m]: [32mDeleted case "AutoCase_KHPEBP" from createCase.json[39m
-2025-07-23 11:07:13 [[32minfo[39m]: [32mSuccessfully clicked on Cases Menu Link[39m
-2025-07-23 11:07:17 [[32minfo[39m]: [32mCase "AutoCase_KHPEBP" is NOT present in the Active Cases list.[39m
+<![CDATA[🆔 Starting case edit test...
+✏️ Editing case with new description and dynamically selected origin...
+📝 Target Description: "Updated case description - automated edit test"
+🔄 Origin: Will be dynamically selected (different from current)
+🔧 Starting case edit process...
+📋 Navigating to Cases for editing...
+🔍 Debugging: Looking for navigation elements...
+🔍 Available navigation elements: []
+🎯 Trying direct URL navigation to Cases...
+Navigating directly to Cases: https://org6d780a22.crm.dynamics.com/main.aspx?etn=incident&pagetype=entitylist
+🔍 Checking if Service section needs to be expanded...
+🎯 Attempting to click Cases menu...
+⚠️ Cases navigation completed (may already be on Cases page or navigation failed)
+🔍 Selecting case for editing...
+🔍 Looking for cases in My Active Cases and selecting via checkbox...
+Checkbox selector [role="grid"] [role="row"] input[type="checkbox"] failed: page.waitForSelector: Timeout 5000ms exceeded.
+Call log:
+[2m  - waiting for locator('[role="grid"] [role="row"] input[type="checkbox"]') to be visible[22m
+
+Found 21 checkboxes with selector: [role="gridcell"] input[type="checkbox"]
+Selecting case via checkbox: "AutoCase_504657"
+✅ Selected case checkbox for: AutoCase_504657
+📂 Opening case for editing: AutoCase_504657
+📂 Opening selected case: AutoCase_504657
+Found case link with selector: a:has-text("AutoCase_504657")
+Found 1 elements with selector: button:has-text("Close")
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 11 elements with selector: button[aria-label*="Close"]
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+✏️ Starting field edits...
+📊 Capturing current origin value before edit...
+📊 Getting current origin value...
+Found origin field for reading: [aria-label="Origin"]
+📊 Current origin value: "Phone"
+🔄 Current Origin: "Phone"
+📝 Editing description field...
+⚠️ Could not reliably edit description field
+⚠️ Failed to edit description, continuing...
+🔄 Selecting different origin (current: "Phone")...
+Found origin field: [aria-label="Origin"]
+Found 1 elements with selector: button:has-text("Close")
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 11 elements with selector: button[aria-label*="Close"]
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+🔄 Origin selection attempt 1/3
+   Origin option selector [role="listbox"] [role="option"] failed on attempt 1: page.waitForSelector: Timeout 3000ms exceeded.
+Call log:
+[2m  - waiting for locator('[role="listbox"] [role="option"]') to be visible[22m
+
+   Origin option selector [aria-expanded="true"] [role="option"] failed on attempt 1: page.waitForSelector: Timeout 3000ms exceeded.
+Call log:
+[2m  - waiting for locator('[aria-expanded="true"] [role="option"]') to be visible[22m
+
+   Origin option selector [role="combobox"] + div [role="option"] failed on attempt 1: page.waitForSelector: Timeout 3000ms exceeded.
+Call log:
+[2m  - waiting for locator('[role="combobox"] + div [role="option"]') to be visible[22m
+
+   Origin option selector .ms-ComboBox-optionsContainer [role="option"] failed on attempt 1: page.waitForSelector: Timeout 3000ms exceeded.
+Call log:
+[2m  - waiting for locator('.ms-ComboBox-optionsContainer [role="option"]') to be visible[22m
+
+   Origin option selector [data-id*="origin"] [role="option"] failed on attempt 1: page.waitForSelector: Timeout 3000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-id*="origin"] [role="option"]') to be visible[22m
+
+   Attempt 1 failed, waiting before retry...
+🔄 Origin selection attempt 2/3
+   Found 7 origin options with selector: [role="listbox"] [role="option"]
+   Checking option: "--Select--"
+   Checking option: "Phone"
+   Checking option: "Email"
+   ✅ Valid different option: "Email"
+   Checking option: "Web"
+   ✅ Valid different option: "Web"
+   Checking option: "Facebook"
+   ✅ Valid different option: "Facebook"
+   Checking option: "Twitter"
+   ✅ Valid different option: "Twitter"
+   Checking option: "IoT"
+   ✅ Valid different option: "IoT"
+   ✅ Successfully selected different origin: "Email" on attempt 2
+   📊 Verification - Input value: "", Text content: "Email"
+   ✅ Origin selection verified successfully
+🔍 Looking for Save & Close button...
+Found 1 elements with selector: [aria-label="Close"]
+Found 1 elements with selector: button:has-text("Close")
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 13 elements with selector: button[aria-label*="Close"]
+Skipping "Save & Close" button - should only be used after all fields are filled: "Save & Close"
+Found 1 elements with selector: [data-testid*="close"]
+📋 Checking required fields before save and close:
+  ✅ [aria-label="Case Title"]: "AutoCase_504657"
+  🔍 Found Subject using alternative selector: [data-id*="subject"] input
+  ✅ [aria-label*="Subject"]: "Default Subject"
+  ✅ [aria-label="Origin"]: "Email"
+Found Save & Close button: button:has-text("Save & Close")
+✅ Save & Close button clicked successfully
+🔍 Verifying navigation to My Active Cases screen...
+✅ Found page indicator: text="My Active Cases" - likely on Cases screen
+✅ Validating edits for case: AutoCase_504657
+📊 Expected Description: "Updated case description - automated edit test"
+🔄 Original Origin: "Phone" → New Origin: "Email"
+✅ Successfully opened case for validation: AutoCase_504657
+🔍 Starting comprehensive field validation...
+📝 ASSERTION - Description Field Validation:
+   Selector: [aria-label="Description"]
+   Expected: "Updated case description - automated edit test"
+   Actual:   "Updated case description - automated edit test"
+   ✅ PASS - Description validation passed (exact match)
+🔄 ASSERTION - Origin Field Validation:
+   Selector: [aria-label="Origin"]
+   Original Origin: "Phone"
+   Expected New Origin: "Email"
+   Actual Current Origin: "Email"
+   ✅ PASS - Origin validation passed (exact/partial match with expected)
+   ✅ PASS - Origin successfully changed from "Phone" to "Email"
+
+📋 VALIDATION SUMMARY:
+📝 Description: ✅ PASSED
+🔄 Origin Change: ✅ PASSED
+🎯 Overall Validation: ✅ PASSED
+✅ Case edit test completed successfully!
 ]]>
 </system-out>
 </testcase>

@@ -22,7 +22,7 @@ export class HomePage {
    *
    * This method waits for an asynchronous timeout, then attempts to hover over and click
    * the first instance of the Playwright Testing POC link element. The action is retried up to
-   * 2 times with a 1000ms delay between attempts if it fails. Upon successful click, an info
+   * 3 times with a 2000ms delay between attempts if it fails. Upon successful click, an info
    * log is recorded.
    *
    * @throws Will throw an error if the link cannot be clicked after the specified retries.
@@ -31,9 +31,13 @@ export class HomePage {
   async clickPlaywrightTestingHubLink(): Promise<void> {
     await this.helper.waitForAsyncTimeout();
     await retryAction(async () => {
-      await this.playwrightTestingHubLink.first().hover();
-      await this.playwrightTestingHubLink.first().click({ force: true });
-    }, 2, 1000, 'Clicking Playwright Testing POC Link');
+      // Wait for the element to be visible with increased timeout
+      await this.playwrightTestingHubLink.first().waitFor({ state: 'visible', timeout: 15000 });
+      // Hover with increased timeout
+      await this.playwrightTestingHubLink.first().hover({ timeout: 15000 });
+      // Click with increased timeout
+      await this.playwrightTestingHubLink.first().click({ force: true, timeout: 15000 });
+    }, 3, 2000, 'Clicking Playwright Testing POC Link');
     logger.info("Successfully clicked on Playwright Testing POC Link");
   }
 

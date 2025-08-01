@@ -2,5 +2,26 @@
   "Default Subject": {
     "caseTitle": "AutoCase_WSHLZQ"
   },
-  "Query": []
+  "Query": [
+    {
+      "caseTitle": "AutoCase_POENVM",
+      "caseNumber": "CAS-01177-P7W4Q1"
+    },
+    {
+      "caseTitle": "AutoCase_HJUOID",
+      "caseNumber": "CAS-01179-Z5S5F6"
+    },
+    {
+      "caseTitle": "AutoCase_KCLFHM",
+      "caseNumber": "CAS-01181-W3M5J5"
+    },
+    {
+      "caseTitle": "AutoCase_DYITRW",
+      "caseNumber": "CAS-01182-N6P6X4"
+    },
+    {
+      "caseTitle": "AutoCase_YGJJRS",
+      "caseNumber": "CAS-01186-J8J2W6"
+    }
+  ]
 }
